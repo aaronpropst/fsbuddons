@@ -30,26 +30,31 @@ fsb = (function ($) {
 			console.log(data);
 		});
 		
+		
+		$('#main a').bind('tap', tapHandler);//.on('click', fsb.tapHandler);
 
 		console.log('fsb.init...');
 	};
 	
-	var click = function(command){
-		if (typeof command === 'string'){
-			socket.emit('click', { command: command });
-		}else{
-			throw "need a string for click.."
+	var tapHandler = function(e){
+		e.preventDefault();
+		if (typeof $(this).data('keystrokes') === 'string'){
+			var command = $(this).data('keystrokes');
+			
+			setTimeout(function(){
+				socket.emit('click', { command: command });
+			},0);
 		}
 	};
 	
 	
 	
+	
 	// Public
-	return { // { must be on same line as return else semicolon gets inserted
+	return { 
 		socket: function(){ return socket },
 		url: url,
-		init: init,
-		click: click
+		init: init
 	};
 
 } (jQuery));
