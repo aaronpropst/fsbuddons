@@ -31,7 +31,7 @@ fsb = (function ($) {
 		});
 		
 		
-		$('#main a').bind('tap', tapHandler);//.on('click', fsb.tapHandler);
+		$('#main button').bind('tap', tapHandler);//.on('click', fsb.tapHandler);
 
 		console.log('fsb.init...');
 	};
